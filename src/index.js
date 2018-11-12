@@ -7,6 +7,8 @@ const jwt = require('jsonwebtoken')
 
 const Mutation = require('./resolvers/Mutation')
 const Query = require('./resolvers/Query')
+const Task = require('./resolvers/Task')
+const TaskList = require('./resolvers/TaskList')
 
 sgMail.setApiKey(process.env.SENDGRID_KEY)
 
@@ -14,7 +16,9 @@ const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers: {
     Mutation,
-    Query
+    Query,
+    Task,
+    TaskList,
   },
   context: req => ({
     ...req,
@@ -33,6 +37,9 @@ server.express.use((req, res, next) => {
     // TODO what happens if the token doesn't verify
     const verifiedToken = jwt.verify(token, process.env.APP_SECRET)
     req.userId = verifiedToken.userId
+  } else {
+    // TODO: TEMP HACK
+    req.userId = 'cjoehsg0nwa110a01lfqm2a3k'
   }
   next()
 })

@@ -23,7 +23,8 @@ module.exports = {
     return ctx.prisma.user({ id: ctx.request.userId })
   },
   
-  async taskLists(root, args, ctx, info) {
+  async taskLists(root, args, ctx) {
+    console.log('taskLists resolver')
     const { request: { userId } } = ctx
     if(!userId) return []
 
@@ -53,7 +54,7 @@ module.exports = {
       }
     `
 
-    return ctx.prisma.taskLists().$fragment(fragment)
+    return ctx.prisma.taskLists()
   },
 
   async taskList(root, args, ctx) {
