@@ -1,8 +1,8 @@
-const Task =  {
+const Task = {
   id: (parent) => parent.id,
   title: (parent) => parent.title,
   description: (parent) => {
-    console.log('hi')
+    console.log('Task Resolver', parent)
     return parent.description
   },
   dueDate: (parent) => parent.dueDate,

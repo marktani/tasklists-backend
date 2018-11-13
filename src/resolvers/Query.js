@@ -24,7 +24,7 @@ module.exports = {
   },
   
   async taskLists(root, args, ctx) {
-    console.log('taskLists resolver')
+    console.log('taskLists resolver', root)
     const { request: { userId } } = ctx
     if(!userId) return []
 

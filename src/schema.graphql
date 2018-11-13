@@ -61,6 +61,17 @@ type User {
   avatar: String
 }
 
+type TaskList {
+  id: ID!
+  name: String!
+  description: String
+  taskListFields: [TaskListField!]!
+  tasks: [Task!]!
+  slug: String!
+  totalTaskCount: Int
+  closedTaskCount: Int
+}
+
 type StatusMessage {
   message: String
 }
